@@ -1,5 +1,5 @@
-#ifndef SRC_KEY_H
-#define SRC_KEY_H
+#ifndef SRC_DATA_MODELS_KEY_H
+#define SRC_DATA_MODELS_KEY_H
 
 #include <string>
 
@@ -19,4 +19,4 @@ class Key {
   bool operator!=(const Key& other) const;
 };
 
-#endif  // SRC_KEY_H
+#endif  // SRC_DATA_MODELS_KEY_H

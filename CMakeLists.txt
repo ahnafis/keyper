@@ -17,6 +17,7 @@ add_library(keyper STATIC)
 add_executable(exec)
 set_target_properties(exec PROPERTIES OUTPUT_NAME keyper)
 
+include_directories(src)
 add_subdirectory(src)
 
 target_link_libraries(exec keyper)

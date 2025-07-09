@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <iostream>
 
-#include "key.h"
+#include "data/models/key.h"
 
 int main() {
   auto key = Key("doodle.com", "ahnaf", "123");

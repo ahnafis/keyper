@@ -1,2 +1,2 @@
-target_sources(keyper PRIVATE key.cc key.h)
+add_subdirectory(data)
 target_sources(exec PRIVATE main.cc)
