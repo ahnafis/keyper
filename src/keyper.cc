@@ -56,9 +56,9 @@ void Keyper::delete_keys(const std::vector<UniqueId>& id_array) {
 }
 
 Key Keyper::ask() const {
-  const auto site = input<std::string>("Site: ");
-  const auto username = input<std::string>("Username: ");
-  const auto password = input<std::string>("Password: ");
+  const auto site = input("Site: ");
+  const auto username = input("Username: ");
+  const auto password = input("Password: ");
 
   return Key(site, username, password);
 }
