@@ -6,7 +6,6 @@
 #include <vector>
 
 #include "data/models/key.h"
-#include "data/models/key_entity.h"
 
 auto db = JsonKeyDataSource("./data/test_db.json");
 
@@ -46,7 +45,7 @@ TEST_CASE("Should fetch specified keys") {
 
 TEST_CASE("Should update a key") {
   key_1.site = "google";
-  db.update(1, {key_1.site, key_1.username, key_1.password});
+  db.update(1, key_1);
 
   CHECK_EQ(*db.find_id(1), key_1);
 };
