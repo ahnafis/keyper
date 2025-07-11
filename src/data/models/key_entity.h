@@ -3,6 +3,7 @@
 
 #include <string>
 
+#include "data/models/key.h"
 #include "types/unique_id.h"
 
 class KeyEntity {
@@ -21,8 +22,15 @@ class KeyEntity {
       const std::string& password
   );
 
+  KeyEntity(const UniqueId& id, const Key& data);
+
   bool operator==(const KeyEntity& other) const;
   bool operator!=(const KeyEntity& other) const;
 };
+
+bool operator==(const Key& left, const KeyEntity& right);
+bool operator!=(const Key& left, const KeyEntity& right);
+bool operator==(const KeyEntity& left, const Key& right);
+bool operator!=(const KeyEntity& left, const Key& right);
 
 #endif  // SRC_DATA_MODELS_KEY_ENTITY_H

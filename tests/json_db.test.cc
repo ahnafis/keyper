@@ -8,11 +8,6 @@
 #include "data/models/key.h"
 #include "data/models/key_entity.h"
 
-bool operator==(const Key& left, const KeyEntity& right);
-bool operator!=(const Key& left, const KeyEntity& right);
-bool operator==(const KeyEntity& left, const Key& right);
-bool operator!=(const KeyEntity& left, const Key& right);
-
 auto db = JsonKeyDataSource("./data/test_db.json");
 
 auto key_1 = Key("whatever", "ahnaf", "123");
@@ -68,22 +63,3 @@ TEST_CASE("Should not fail if given ID is not found") {
   db.erase(1);
   CHECK_EQ(db.fetch().size(), 0);
 };
-
-bool operator==(const Key& left, const KeyEntity& right) {
-  return (
-      left.site == right.site && left.username == right.username &&
-      left.password == right.password
-  );
-}
-
-bool operator!=(const Key& left, const KeyEntity& right) {
-  return !(left == right);
-}
-
-bool operator==(const KeyEntity& left, const Key& right) {
-  return right == left;
-}
-
-bool operator!=(const KeyEntity& left, const Key& right) {
-  return !(right == left);
-}

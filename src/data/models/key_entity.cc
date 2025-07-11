@@ -16,6 +16,9 @@ KeyEntity::KeyEntity(
   this->password = _password;
 };
 
+KeyEntity::KeyEntity(const UniqueId& id, const Key& data) :
+    KeyEntity(id, data.site, data.username, data.password) {}
+
 bool KeyEntity::operator==(const KeyEntity& other) const {
   return (
       // clang-format off
@@ -31,4 +34,28 @@ bool KeyEntity::operator==(const KeyEntity& other) const {
 
 bool KeyEntity::operator!=(const KeyEntity& other) const {
   return !(*this == other);
+}
+
+bool operator==(const Key& left, const KeyEntity& right) {
+  return (
+      // clang-format off
+
+      left.site == right.site &&
+      left.username == right.username &&
+      left.password == right.password
+
+      // clang-format on
+  );
+}
+
+bool operator!=(const Key& left, const KeyEntity& right) {
+  return !(left == right);
+}
+
+bool operator==(const KeyEntity& left, const Key& right) {
+  return right == left;
+}
+
+bool operator!=(const KeyEntity& left, const Key& right) {
+  return !(right == left);
 }
