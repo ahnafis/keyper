@@ -19,11 +19,12 @@ set(JSON_BuildTests
     OFF
     CACHE INTERNAL "")
 
+target_include_directories(keyper PUBLIC src)
 target_link_libraries(keyper PRIVATE nlohmann_json::nlohmann_json)
 
 add_executable(exec)
 set_target_properties(exec PROPERTIES OUTPUT_NAME keyper)
-target_link_libraries(exec keyper)
+target_link_libraries(exec keyper nlohmann_json::nlohmann_json)
 
 include_directories(src)
 add_subdirectory(src)
