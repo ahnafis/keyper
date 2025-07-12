@@ -6,6 +6,7 @@
 #ifndef SRC_UTILS_FS_H
 #define SRC_UTILS_FS_H
 
+#include <filesystem>
 #include <string>
 
 #include "types/json.h"
@@ -21,6 +22,8 @@ void write_json_file(const std::string& file_name, const json& content);
 
 std::string read_file(const std::string& file_name);
 json read_json_file(const std::string& file_name);
+
+path expand(const std::string& path);
 
 }  // namespace fs
 

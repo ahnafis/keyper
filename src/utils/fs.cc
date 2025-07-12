@@ -56,3 +56,12 @@ json fs::read_json_file(const std::string& file_name) {
 
   return content;
 }
+
+fs::path fs::expand(const std::string& _path) {
+  if (_path.starts_with("~")) {
+    const std::string HOME = std::getenv("HOME");
+    return fs::path(HOME + _path.substr(1));
+  }
+
+  return fs::path(_path);
+}

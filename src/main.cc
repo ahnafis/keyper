@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <exception>
 #include <iostream>
+#include <string>
 #include <vector>
 
 #include "CLI/CLI.hpp"
@@ -13,21 +14,23 @@ void handle_keyboard_interrup(int signum);
 int main(int argc, char* argv[]) {
   signal(SIGINT, handle_keyboard_interrup);
 
-  auto keyper = Keyper({.config_file = "./config.json"});
-
   CLI::App app;
   app.require_subcommand(1);
 
   app.description("A tool to manage passwords.");
   app.footer("Copyright (C) 2025 Ahnaf Al Nafis");
 
-  app.get_formatter()->column_width(20);
+  app.get_formatter()->column_width(30);
 
   ShowKeysOptions show_keys_options;
   UniqueId id;
   std::vector<UniqueId> id_list;
+  std::string config_file;
 
   try {
+    app.add_option("-c, --config", config_file, "Configuration file");
+    auto keyper = Keyper({.config_file = config_file});
+
     // Add key:
     auto add_key = app.add_subcommand("add", "To add a password");
     add_key->callback([&]() {

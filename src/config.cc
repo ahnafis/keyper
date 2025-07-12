@@ -22,6 +22,7 @@ KeyperConfig::KeyperConfig(const std::string& _config_file) {
   if (config.empty() || config.is_null()) config = this->default_config;
 
   this->db_file = config.at("db_file").get<std::string>();
+  this->db_file = fs::expand(this->db_file);
 
   fs::write_json_file(this->config_file, this->to_json());
 }
