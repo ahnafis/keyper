@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 4.0)
 
 project(
   keyper
-  VERSION 0.0.1
+  VERSION 0.1.0
   DESCRIPTION "A tool to manage passwords."
   LANGUAGES CXX)
 
@@ -24,7 +24,9 @@ target_link_libraries(keyper PRIVATE nlohmann_json::nlohmann_json)
 
 add_executable(exec)
 set_target_properties(exec PROPERTIES OUTPUT_NAME keyper)
-target_link_libraries(exec keyper nlohmann_json::nlohmann_json)
+
+add_subdirectory(third_party/CLI11)
+target_link_libraries(exec keyper nlohmann_json::nlohmann_json CLI11::CLI11)
 
 include_directories(src)
 add_subdirectory(src)

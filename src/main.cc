@@ -2,38 +2,78 @@
 #include <cstdlib>
 #include <exception>
 #include <iostream>
+#include <vector>
 
+#include "CLI/CLI.hpp"
 #include "keyper.h"
+#include "types/unique_id.h"
 
 void handle_keyboard_interrup(int signum);
 
-int main() {
+int main(int argc, char* argv[]) {
   signal(SIGINT, handle_keyboard_interrup);
 
-  auto app = Keyper({.config_file = "./config.json"});
+  auto keyper = Keyper({.config_file = "./config.json"});
+
+  CLI::App app;
+  app.require_subcommand(1);
+
+  app.description("A tool to manage passwords.");
+  app.footer("Copyright (C) 2025 Ahnaf Al Nafis");
+
+  app.get_formatter()->column_width(20);
+
+  ShowKeysOptions show_keys_options;
+  UniqueId id;
+  std::vector<UniqueId> id_list;
 
   try {
-    std::cout << "Adding a key..." << std::endl;
-    app.add_key();
+    // Add key:
+    auto add_key = app.add_subcommand("add", "To add a password");
+    add_key->callback([&]() {
+      keyper.add_key();
+    });
 
-    std::cout << "Showing keys..." << std::endl;
-    app.show_keys({.show_id = true, .reveal_password = true});
+    // Show keys:
+    auto show_keys = app.add_subcommand("show", "To show passwords");
+    show_keys->add_flag("-s, --show-id", show_keys_options.show_id, "Show IDs");
+    show_keys->add_flag(
+        "-r, --reveal",
+        show_keys_options.reveal_password,
+        "Reveal password"
+    );
 
-    std::cout << "Updating a key..." << std::endl;
-    app.update_key(1);
+    show_keys->callback([&]() {
+      keyper.show_keys(show_keys_options);
+    });
 
-    std::cout << "Showing keys..." << std::endl;
-    app.show_keys({.show_id = true, .reveal_password = true});
+    // Update key:
+    auto update_key = app.add_subcommand("update", "To update a password");
+    update_key->add_option("ID", id, "Select ID")->required();
 
-    std::cout << "Deleting a key..." << std::endl;
-    app.delete_keys({1});
+    update_key->callback([&]() {
+      keyper.update_key(id);
+    });
 
-    std::cout << "Showing keys..." << std::endl;
-    app.show_keys({.show_id = true, .reveal_password = true});
+    // Delete keys:
+    auto delete_key = app.add_subcommand("delete", "To delete passwords");
+    delete_key->add_option("IDs", id_list, "Select ID")->required();
+
+    delete_key->callback([&]() {
+      keyper.delete_keys(id_list);
+    });
+
+    app.parse(argc, argv);
+  }
+
+  catch (const CLI::ParseError& error) {
+    app.exit(error);
+    return EXIT_FAILURE;
   }
 
   catch (const std::exception& error) {
     std::cout << error.what() << std::endl;
+    return EXIT_FAILURE;
   }
 
   return EXIT_SUCCESS;
