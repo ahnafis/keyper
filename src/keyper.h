@@ -3,6 +3,7 @@
 
 #include <string>
 
+#include "config.h"
 #include "data/models/key.h"
 #include "data/vault.h"
 #include "types/unique_id.h"
@@ -18,7 +19,7 @@ struct ShowKeysOptions {
 
 class Keyper {
  public:
-  Keyper(const KeyperOptions& options);
+  explicit Keyper(const KeyperOptions& options);
 
   void show_keys(const ShowKeysOptions& options) const;
   void add_key();
@@ -27,6 +28,7 @@ class Keyper {
 
  private:
   KeyperOptions options;
+  KeyperConfig config;
   Vault vault;
 
   Key ask() const;

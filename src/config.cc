@@ -1,5 +1,6 @@
 #include "config.h"
 
+#include <iostream>
 #include <string>
 
 #include "types/json.h"
@@ -19,18 +20,23 @@ KeyperConfig::KeyperConfig(const std::string& _config_file) {
       {"db_file", "./data.json"}
   };
 
-  if (config.empty() || config.is_null()) config = this->default_config;
+  if (config.empty() || config.is_null()) {
+    config = this->default_config;
+    fs::write_json_file(this->config_file, config);
+    std::cout << this->config_file << std::endl;
+  }
 
   this->db_file = config.at("db_file").get<std::string>();
   this->db_file = fs::expand(this->db_file);
 
-  fs::write_json_file(this->config_file, this->to_json());
+  this->default_email = config.at("default_email").get<std::string>();
 }
 
 json KeyperConfig::to_json() const {
   auto config = json::object();
 
   config["db_file"] = this->db_file;
+  config["default_email"] = this->default_email;
 
   return config;
 }

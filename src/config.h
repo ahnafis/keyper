@@ -8,7 +8,9 @@
 class KeyperConfig {
  public:
   std::string db_file;
+  std::string default_email;
 
+  KeyperConfig() = default;
   explicit KeyperConfig(const std::string& config_file);
 
  private:
