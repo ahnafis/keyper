@@ -3,10 +3,10 @@
 #include <doctest/doctest.h>
 
 const auto config_file = "./config.json";
-const auto config = KeyperConfig(config_file);
+const KeyperConfig config = load_config(config_file);
 
 TEST_CASE("Should read config") {
-  CHECK_EQ(config.db_file, "./data.json");
+  CHECK_EQ(config.data_file, "./data.json");
 }
 
 TEST_CASE("Should find the config file") {

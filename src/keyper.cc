@@ -1,6 +1,5 @@
 #include "keyper.h"
 
-#include <ios>
 #include <iostream>
 #include <memory>
 #include <string>
@@ -16,9 +15,9 @@
 
 Keyper::Keyper(const KeyperOptions& options) {
   this->options = options;
-  this->config = KeyperConfig(this->options.config_file);
+  this->config = load_config(this->options.config_file);
 
-  auto data_source = std::make_shared<JsonKeyDataSource>(config.db_file);
+  auto data_source = std::make_shared<JsonKeyDataSource>(config.data_file);
   this->vault = Vault(data_source);
 }
 
@@ -44,8 +43,6 @@ void Keyper::show_keys(const ShowKeysOptions& options) const {
 void Keyper::add_key() {
   auto key = this->ask();
   if (key.username.empty()) key.username = this->config.default_email;
-
-  std::cout << std::boolalpha << key.username.empty() << std::endl;
   this->vault.add(key);
 }
 

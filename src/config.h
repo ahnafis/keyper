@@ -5,19 +5,11 @@
 
 #include "types/json.h"
 
-class KeyperConfig {
- public:
-  std::string db_file;
+struct KeyperConfig {
+  std::string data_file;
   std::string default_email;
-
-  KeyperConfig() = default;
-  explicit KeyperConfig(const std::string& config_file);
-
- private:
-  std::string config_file;
-
-  json default_config;
-  json to_json() const;
 };
+
+KeyperConfig load_config(std::string config_file);
 
 #endif  // SRC_CONFIG_H
