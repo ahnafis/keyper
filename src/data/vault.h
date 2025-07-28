@@ -15,7 +15,7 @@ using std::string;
 class Vault {
   public:
     Vault() = default;
-    explicit Vault(std::shared_ptr<IKeyDataSource> data_source);
+    explicit Vault(const std::shared_ptr<KeyDataSource> data_source);
 
     std::vector<KeyEntity> fetch() const;
     std::vector<KeyEntity> fetch(const Query& query) const;
@@ -26,5 +26,5 @@ class Vault {
     void erase(const UniqueId& id);
 
   private:
-    std::shared_ptr<IKeyDataSource> data_source;
+    std::shared_ptr<KeyDataSource> data_source;
 };

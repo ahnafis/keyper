@@ -5,21 +5,16 @@
 #include "types/unique_id.h"
 
 KeyEntity::KeyEntity(
-    const UniqueId& _id,
-    const std::string& _site,
-    const std::string& _username,
-    const std::string& _password
+    const UniqueId& id,
+    const std::string& site,
+    const std::string& username,
+    const std::string& password
 )
 {
-    this->id = _id;
-    this->site = _site;
-    this->username = _username;
-    this->password = _password;
-}
-
-KeyEntity::KeyEntity(const UniqueId& id, const Key& data)
-  : KeyEntity(id, data.site, data.username, data.password)
-{
+    this->id = id;
+    this->site = site;
+    this->username = username;
+    this->password = password;
 }
 
 bool KeyEntity::operator==(const KeyEntity& other) const

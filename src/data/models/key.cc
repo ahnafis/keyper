@@ -3,14 +3,14 @@
 #include <string>
 
 Key::Key(
-    const std::string& _site,
-    const std::string& _username,
-    const std::string& _password
+    const std::string& site,
+    const std::string& username,
+    const std::string& password
 )
 {
-    this->site = _site;
-    this->username = _username;
-    this->password = _password;
+    this->site = site;
+    this->username = username;
+    this->password = password;
 }
 
 bool Key::operator==(const Key& other) const

@@ -12,9 +12,9 @@
 
 using std::string;
 
-Vault::Vault(std::shared_ptr<IKeyDataSource> _data_source)
+Vault::Vault(const std::shared_ptr<KeyDataSource> data_source)
 {
-    this->data_source = _data_source;
+    this->data_source = data_source;
 }
 
 std::vector<KeyEntity> Vault::fetch() const

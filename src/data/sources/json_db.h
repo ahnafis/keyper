@@ -9,9 +9,9 @@
 #include "types/json.h"
 #include "types/unique_id.h"
 
-class JsonKeyDataSource : public IKeyDataSource {
+class JsonKeyDataSource : public KeyDataSource {
   public:
-    explicit JsonKeyDataSource(const std::string& db_file);
+    explicit JsonKeyDataSource(const std::string& data_file);
     ~JsonKeyDataSource();
 
     std::vector<KeyEntity> fetch() const override;
@@ -23,7 +23,7 @@ class JsonKeyDataSource : public IKeyDataSource {
     void erase(const UniqueId& id) override;
 
   private:
-    std::string db_file;
+    std::string data_file;
     std::vector<KeyEntity> keys;
 
     bool exists(const UniqueId& id) const;

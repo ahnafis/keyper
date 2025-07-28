@@ -9,9 +9,9 @@
 
 using KeyIterator = std::vector<KeyEntity>::const_iterator;
 
-class IKeyDataSource {
+class KeyDataSource {
   public:
-    virtual ~IKeyDataSource() = default;
+    virtual ~KeyDataSource() = default;
 
     virtual std::vector<KeyEntity> fetch() const = 0;
     virtual std::vector<KeyEntity> fetch(const Query& query) const = 0;

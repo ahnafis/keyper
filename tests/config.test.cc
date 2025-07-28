@@ -2,6 +2,8 @@
 
 #include <doctest/doctest.h>
 
+#include <filesystem>
+
 const auto config_file = "./config.json";
 const KeyperConfig config = load_config(config_file);
 

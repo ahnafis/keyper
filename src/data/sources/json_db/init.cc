@@ -6,12 +6,12 @@
 #include "types/json.h"
 #include "utils/fs.h"
 
-JsonKeyDataSource::JsonKeyDataSource(const std::string& db_file)
+JsonKeyDataSource::JsonKeyDataSource(const std::string& data_file)
 {
-    this->db_file = db_file;
-    const auto db_dir = fs::path(this->db_file).parent_path();
+    this->data_file = data_file;
+    const auto db_dir = fs::path(this->data_file).parent_path();
 
-    auto data = fs::read_json_file(this->db_file);
+    auto data = fs::read_json_file(this->data_file);
     this->keys = {};
 
     if (!fs::exists(db_dir))
@@ -36,5 +36,5 @@ JsonKeyDataSource::~JsonKeyDataSource()
     for (const auto& key : this->keys)
         data.push_back(this->to_json(key));
 
-    fs::write_json_file(this->db_file, data);
+    fs::write_json_file(this->data_file, data);
 }
