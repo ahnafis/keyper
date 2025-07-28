@@ -1,5 +1,70 @@
+# Prerequisites
+*.d
+
+# Build files
 build
+CMakeCache.txt
+CMakeFiles
+CMakeLists.txt.user
+CMakeScripts
+CMakeUserPresets.json
+CTestTestfile.cmake
+Makefile
+Testing
+_deps
+cmake_install.cmake
+compile_commands.json
+install_manifest.txt
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Linker files
+*.ilk
+
+# Debugger Files
+*.pdb
+
+# Static analysis tools' files
+vgcore*
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Third party libraries
 third_party
 
+# Executables
+*.exe
+*.out
+*.app
+
+# debug information files
+*.dwo
+
+# Text editor files
+*.vim
+.vscode
+.idea
+
+# Language server files
 .cache
-vgcore*
