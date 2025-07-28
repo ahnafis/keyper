@@ -9,16 +9,14 @@ KeyEntity::KeyEntity(
     const std::string& site,
     const std::string& username,
     const std::string& password
-)
-{
+) {
     this->id = id;
     this->site = site;
     this->username = username;
     this->password = password;
 }
 
-bool KeyEntity::operator==(const KeyEntity& other) const
-{
+bool KeyEntity::operator==(const KeyEntity& other) const {
     return (
         // clang-format off
 
@@ -31,13 +29,11 @@ bool KeyEntity::operator==(const KeyEntity& other) const
     );
 }
 
-bool KeyEntity::operator!=(const KeyEntity& other) const
-{
+bool KeyEntity::operator!=(const KeyEntity& other) const {
     return !(*this == other);
 }
 
-bool operator==(const Key& left, const KeyEntity& right)
-{
+bool operator==(const Key& left, const KeyEntity& right) {
     return (
         // clang-format off
 
@@ -49,17 +45,14 @@ bool operator==(const Key& left, const KeyEntity& right)
     );
 }
 
-bool operator!=(const Key& left, const KeyEntity& right)
-{
+bool operator!=(const Key& left, const KeyEntity& right) {
     return !(left == right);
 }
 
-bool operator==(const KeyEntity& left, const Key& right)
-{
+bool operator==(const KeyEntity& left, const Key& right) {
     return right == left;
 }
 
-bool operator!=(const KeyEntity& left, const Key& right)
-{
+bool operator!=(const KeyEntity& left, const Key& right) {
     return !(right == left);
 }

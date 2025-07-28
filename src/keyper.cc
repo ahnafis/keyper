@@ -9,12 +9,10 @@
 #include "data/models/key.h"
 #include "data/sources/json_db.h"
 #include "data/vault.h"
-#include "types/json.h"
 #include "types/unique_id.h"
 #include "utils/input.h"
 
-Keyper::Keyper(const KeyperOptions& options)
-{
+Keyper::Keyper(const KeyperOptions& options) {
     this->options = options;
     this->config = load_config(this->options.config_file);
 
@@ -22,8 +20,7 @@ Keyper::Keyper(const KeyperOptions& options)
     this->vault = Vault(data_source);
 }
 
-void Keyper::show_keys(const ShowKeysOptions& options) const
-{
+void Keyper::show_keys(const ShowKeysOptions& options) const {
     const auto keys = this->vault.fetch();
 
     const auto [show_id, reveal_password] = options;
@@ -47,8 +44,7 @@ void Keyper::show_keys(const ShowKeysOptions& options) const
     }
 }
 
-void Keyper::add_key()
-{
+void Keyper::add_key() {
     auto key = this->ask();
 
     if (key.username.empty()) {
@@ -58,21 +54,18 @@ void Keyper::add_key()
     this->vault.add(key);
 }
 
-void Keyper::update_key(const UniqueId& id)
-{
+void Keyper::update_key(const UniqueId& id) {
     const auto [site, username, password] = this->ask();
     this->vault.update(id, {site, username, password});
 }
 
-void Keyper::delete_keys(const std::vector<UniqueId>& id_array)
-{
+void Keyper::delete_keys(const std::vector<UniqueId>& id_array) {
     for (const auto& id : id_array) {
         this->vault.erase(id);
     }
 }
 
-Key Keyper::ask() const
-{
+Key Keyper::ask() const {
     const auto site = input("Site: ");
     const auto username = input("Username: ");
     const auto password = input("Password: ");

@@ -10,13 +10,11 @@
 
 namespace fs {
 
-void create_file(const std::string& file_name)
-{
+void create_file(const std::string& file_name) {
     fs::write_file(file_name, "");
 }
 
-void write_file(const std::string& file_name, const std::string& content)
-{
+void write_file(const std::string& file_name, const std::string& content) {
     const auto parent_path = fs::path(file_name).parent_path();
     if (!fs::exists(parent_path)) {
         fs::create_directories(parent_path);
@@ -31,13 +29,11 @@ void write_file(const std::string& file_name, const std::string& content)
     stream.close();
 }
 
-void write_json_file(const std::string& file_name, const json& content)
-{
+void write_json_file(const std::string& file_name, const json& content) {
     fs::write_file(file_name, content.dump());
 }
 
-std::string read_file(const std::string& file_name)
-{
+std::string read_file(const std::string& file_name) {
     std::string content;
     std::string line;
 
@@ -62,8 +58,7 @@ std::string read_file(const std::string& file_name)
     return content;
 }
 
-json read_json_file(const std::string& file_name)
-{
+json read_json_file(const std::string& file_name) {
     json content;
     std::ifstream stream(file_name);
 
@@ -75,8 +70,7 @@ json read_json_file(const std::string& file_name)
     return content;
 }
 
-fs::path expand(const std::string& path)
-{
+fs::path expand(const std::string& path) {
     if (path.starts_with("~")) {
         const std::string HOME = std::getenv("HOME");
         return fs::path(HOME + path.substr(1));

@@ -6,15 +6,13 @@ Key::Key(
     const std::string& site,
     const std::string& username,
     const std::string& password
-)
-{
+) {
     this->site = site;
     this->username = username;
     this->password = password;
 }
 
-bool Key::operator==(const Key& other) const
-{
+bool Key::operator==(const Key& other) const {
     return (
         // clang-format off
 
@@ -26,7 +24,6 @@ bool Key::operator==(const Key& other) const
     );
 }
 
-bool Key::operator!=(const Key& other) const
-{
+bool Key::operator!=(const Key& other) const {
     return !(*this == other);
 }

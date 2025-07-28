@@ -4,8 +4,7 @@
 #include <string>
 #include <string_view>
 
-std::string input(std::string_view prompt)
-{
+std::string input(std::string_view prompt) {
     if (!prompt.empty()) {
         std::cout << prompt;
     }

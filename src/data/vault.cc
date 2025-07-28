@@ -12,37 +12,30 @@
 
 using std::string;
 
-Vault::Vault(const std::shared_ptr<KeyDataSource> data_source)
-{
+Vault::Vault(const std::shared_ptr<KeyDataSource> data_source) {
     this->data_source = data_source;
 }
 
-std::vector<KeyEntity> Vault::fetch() const
-{
+std::vector<KeyEntity> Vault::fetch() const {
     return this->data_source->fetch();
 }
 
-std::vector<KeyEntity> Vault::fetch(const Query& query) const
-{
+std::vector<KeyEntity> Vault::fetch(const Query& query) const {
     return this->data_source->fetch(query);
 }
 
-KeyEntity Vault::find_id(const UniqueId& id) const
-{
+KeyEntity Vault::find_id(const UniqueId& id) const {
     return *this->data_source->find_id(id);
 }
 
-void Vault::add(const Key& key)
-{
+void Vault::add(const Key& key) {
     return this->data_source->insert(key);
 }
 
-void Vault::update(const UniqueId& id, const Key& key)
-{
+void Vault::update(const UniqueId& id, const Key& key) {
     return this->data_source->update(id, key);
 }
 
-void Vault::erase(const UniqueId& id)
-{
+void Vault::erase(const UniqueId& id) {
     this->data_source->erase(id);
 }

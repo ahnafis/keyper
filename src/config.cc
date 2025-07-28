@@ -5,8 +5,7 @@
 #include "types/json.h"
 #include "utils/fs.h"
 
-KeyperConfig load_config(std::string config_file)
-{
+KeyperConfig load_config(std::string config_file) {
     KeyperConfig config;
     json data;
 

@@ -11,8 +11,7 @@
 
 void handle_keyboard_interrup(int signum);
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]) {
     signal(SIGINT, handle_keyboard_interrup);
 
     CLI::App app;
@@ -87,8 +86,7 @@ int main(int argc, char* argv[])
     return EXIT_SUCCESS;
 }
 
-void handle_keyboard_interrup(int signum)
-{
+void handle_keyboard_interrup(int signum) {
     std::cout << std::endl;
     exit(signum);
 }

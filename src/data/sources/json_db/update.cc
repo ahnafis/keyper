@@ -3,8 +3,7 @@
 #include "data/sources/json_db.h"
 #include "types/unique_id.h"
 
-void JsonKeyDataSource::update(const UniqueId& id, const Key& key)
-{
+void JsonKeyDataSource::update(const UniqueId& id, const Key& key) {
     if (!this->exists(id))
         return;
 

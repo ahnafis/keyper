@@ -5,8 +5,7 @@
 #include "types/json.h"
 #include "types/unique_id.h"
 
-json JsonKeyDataSource::to_json(const KeyEntity& key) const
-{
+json JsonKeyDataSource::to_json(const KeyEntity& key) const {
     return json::object({
         {"id",       key.id      },
         {"site",     key.site    },
@@ -15,8 +14,7 @@ json JsonKeyDataSource::to_json(const KeyEntity& key) const
     });
 }
 
-KeyEntity JsonKeyDataSource::to_key(const json& json_key) const
-{
+KeyEntity JsonKeyDataSource::to_key(const json& json_key) const {
     return KeyEntity(
         json_key.at("id").get<UniqueId>(),
         json_key.at("site").get<std::string>(),
