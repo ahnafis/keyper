@@ -1,6 +1,3 @@
-#ifndef SRC_DB_UNIQUE_ID_H
-#define SRC_DB_UNIQUE_ID_H
+#pragma once
 
 using UniqueId = int;
-
-#endif  // SRC_DB_UNIQUE_ID_H

@@ -6,31 +6,35 @@
 #include "types/json.h"
 #include "utils/fs.h"
 
-JsonKeyDataSource::JsonKeyDataSource(const std::string& _db_file) {
-  this->db_file = _db_file;
+JsonKeyDataSource::JsonKeyDataSource(const std::string& db_file)
+{
+    this->db_file = db_file;
+    const auto db_dir = fs::path(this->db_file).parent_path();
 
-  auto data = fs::read_json_file(this->db_file);
-  this->keys = {};
+    auto data = fs::read_json_file(this->db_file);
+    this->keys = {};
 
-  const auto db_dir = fs::path(this->db_file).parent_path();
-  if (!fs::exists(db_dir)) fs::create_directories(db_dir);
+    if (!fs::exists(db_dir))
+        fs::create_directories(db_dir);
 
-  if (data.empty()) data = json::array();
+    if (data.empty())
+        data = json::array();
 
-  if (!data.is_array()) {
-    std::cout << "Invalid JSON data" << std::endl;
-    return;
-  }
+    if (!data.is_array()) {
+        std::cout << "Invalid JSON data" << std::endl;
+        return;
+    }
 
-  for (const auto& entry : data)
-    this->keys.push_back(this->to_key(entry));
+    for (const auto& entry : data)
+        this->keys.push_back(this->to_key(entry));
 }
 
-JsonKeyDataSource::~JsonKeyDataSource() {
-  auto data = json::array();
+JsonKeyDataSource::~JsonKeyDataSource()
+{
+    auto data = json::array();
 
-  for (const auto& key : this->keys)
-    data.push_back(this->to_json(key));
+    for (const auto& key : this->keys)
+        data.push_back(this->to_json(key));
 
-  fs::write_json_file(this->db_file, data);
+    fs::write_json_file(this->db_file, data);
 }

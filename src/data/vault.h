@@ -1,5 +1,4 @@
-#ifndef SRC_DATA_VAULT_H
-#define SRC_DATA_VAULT_H
+#pragma once
 
 #include <memory>
 #include <string>
@@ -14,20 +13,18 @@
 using std::string;
 
 class Vault {
- public:
-  Vault() = default;
-  explicit Vault(std::shared_ptr<IKeyDataSource> data_source);
+  public:
+    Vault() = default;
+    explicit Vault(std::shared_ptr<IKeyDataSource> data_source);
 
-  std::vector<KeyEntity> fetch() const;
-  std::vector<KeyEntity> fetch(const Query& query) const;
-  KeyEntity find_id(const UniqueId& id) const;
+    std::vector<KeyEntity> fetch() const;
+    std::vector<KeyEntity> fetch(const Query& query) const;
+    KeyEntity find_id(const UniqueId& id) const;
 
-  void add(const Key& key);
-  void update(const UniqueId& id, const Key& key);
-  void erase(const UniqueId& id);
+    void add(const Key& key);
+    void update(const UniqueId& id, const Key& key);
+    void erase(const UniqueId& id);
 
- private:
-  std::shared_ptr<IKeyDataSource> data_source;
+  private:
+    std::shared_ptr<IKeyDataSource> data_source;
 };
-
-#endif  // SRC_DATA_VAULT_H

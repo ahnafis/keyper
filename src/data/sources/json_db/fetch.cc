@@ -7,32 +7,37 @@
 #include "data/sources/json_db.h"
 #include "types/unique_id.h"
 
-std::vector<KeyEntity> JsonKeyDataSource::fetch() const {
-  return this->keys;
+std::vector<KeyEntity> JsonKeyDataSource::fetch() const
+{
+    return this->keys;
 }
 
-std::vector<KeyEntity> JsonKeyDataSource::fetch(const Query& query) const {
-  std::vector<KeyEntity> matched_keys = {};
+std::vector<KeyEntity> JsonKeyDataSource::fetch(const Query& query) const
+{
+    std::vector<KeyEntity> matched_keys = {};
 
-  bool site_matched = false;
-  bool username_matched = false;
+    bool site_matched = false;
+    bool username_matched = false;
 
-  for (const auto& key : this->keys) {
-    site_matched = query.site.empty() || key.site == query.site;
-    username_matched = query.username.empty() || key.username == query.username;
+    for (const auto& key : this->keys) {
+        site_matched = query.site.empty() || key.site == query.site;
+        username_matched =
+            query.username.empty() || key.username == query.username;
 
-    if (site_matched && username_matched) matched_keys.push_back(key);
-  }
+        if (site_matched && username_matched)
+            matched_keys.push_back(key);
+    }
 
-  return matched_keys;
+    return matched_keys;
 }
 
-KeyIterator JsonKeyDataSource::find_id(const UniqueId& id) const {
-  return std::find_if(
-      this->keys.begin(),
-      this->keys.end(),
-      [&id](const KeyEntity& key) -> bool {
-        return key.id == id;
-      }
-  );
-};
+KeyIterator JsonKeyDataSource::find_id(const UniqueId& id) const
+{
+    return std::find_if(
+        this->keys.begin(),
+        this->keys.end(),
+        [&id](const KeyEntity& key) -> bool {
+            return key.id == id;
+        }
+    );
+}

@@ -3,8 +3,7 @@
  * certain jobs. It may not follow some common standards.
  */
 
-#ifndef SRC_UTILS_FS_H
-#define SRC_UTILS_FS_H
+#pragma once
 
 #include <filesystem>
 #include <string>
@@ -26,5 +25,3 @@ json read_json_file(const std::string& file_name);
 path expand(const std::string& path);
 
 }  // namespace fs
-
-#endif  // SRC_UTILS_FS_H

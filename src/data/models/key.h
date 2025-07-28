@@ -1,22 +1,19 @@
-#ifndef SRC_DATA_MODELS_KEY_H
-#define SRC_DATA_MODELS_KEY_H
+#pragma once
 
 #include <string>
 
 class Key {
- public:
-  std::string site;
-  std::string username;
-  std::string password;
+  public:
+    std::string site;
+    std::string username;
+    std::string password;
 
-  Key() = default;
+    Key() = default;
 
-  Key(const std::string& site,
-      const std::string& username,
-      const std::string& password);
+    Key(const std::string& site,
+        const std::string& username,
+        const std::string& password);
 
-  bool operator==(const Key& other) const;
-  bool operator!=(const Key& other) const;
+    bool operator==(const Key& other) const;
+    bool operator!=(const Key& other) const;
 };
-
-#endif  // SRC_DATA_MODELS_KEY_H
