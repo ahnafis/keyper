@@ -10,10 +10,10 @@
 #include "types/json.h"
 #include "types/unique_id.h"
 
-class JsonKeyDataSource : public KeyDataSource {
+class JsonKeyDB : public KeyDB {
   public:
-    explicit JsonKeyDataSource(const std::string& data_file);
-    ~JsonKeyDataSource();
+    explicit JsonKeyDB(const std::string& data_file);
+    ~JsonKeyDB();
 
     std::vector<KeyEntity> fetch() const override;
     std::vector<KeyEntity> fetch(const Query& query) const override;

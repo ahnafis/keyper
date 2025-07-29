@@ -9,30 +9,30 @@
 #include "data/sources/interface.h"
 #include "types/unique_id.h"
 
-Vault::Vault(const std::shared_ptr<KeyDataSource> data_source) {
-    this->data_source = data_source;
+Vault::Vault(const std::shared_ptr<KeyDB> db) {
+    this->db = db;
 }
 
 std::vector<KeyEntity> Vault::fetch() const {
-    return this->data_source->fetch();
+    return this->db->fetch();
 }
 
 std::vector<KeyEntity> Vault::fetch(const Query& query) const {
-    return this->data_source->fetch(query);
+    return this->db->fetch(query);
 }
 
 KeyEntity Vault::find_id(const UniqueId& id) const {
-    return *this->data_source->find_id(id);
+    return *this->db->find_id(id);
 }
 
 void Vault::add(const Key& key) {
-    return this->data_source->insert(key);
+    return this->db->insert(key);
 }
 
 void Vault::update(const UniqueId& id, const Key& key) {
-    return this->data_source->update(id, key);
+    return this->db->update(id, key);
 }
 
 void Vault::erase(const UniqueId& id) {
-    this->data_source->erase(id);
+    this->db->erase(id);
 }

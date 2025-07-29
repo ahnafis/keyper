@@ -5,11 +5,11 @@
 #include "data/sources/json_db.h"
 #include "types/unique_id.h"
 
-bool JsonKeyDataSource::exists(const UniqueId& id) const {
+bool JsonKeyDB::exists(const UniqueId& id) const {
     return this->find_id(id) != this->keys.end();
 }
 
-bool JsonKeyDataSource::is_unique(
+bool JsonKeyDB::is_unique(
     const std::string& site, const std::string& username
 ) const {
     auto iterator = std::find_if(

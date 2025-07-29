@@ -7,7 +7,7 @@
 #include "types/json.h"
 #include "utils/fs.h"
 
-JsonKeyDataSource::JsonKeyDataSource(const std::string& data_file) {
+JsonKeyDB::JsonKeyDB(const std::string& data_file) {
     this->data_file = data_file;
     const auto db_dir = fs::path(this->data_file).parent_path();
 
@@ -29,7 +29,7 @@ JsonKeyDataSource::JsonKeyDataSource(const std::string& data_file) {
         this->keys.push_back(this->to_key(entry));
 }
 
-JsonKeyDataSource::~JsonKeyDataSource() {
+JsonKeyDB::~JsonKeyDB() {
     json data = json::array();
 
     for (const KeyEntity& key : this->keys)

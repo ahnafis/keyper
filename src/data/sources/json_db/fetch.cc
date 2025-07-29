@@ -7,11 +7,11 @@
 #include "data/sources/json_db.h"
 #include "types/unique_id.h"
 
-std::vector<KeyEntity> JsonKeyDataSource::fetch() const {
+std::vector<KeyEntity> JsonKeyDB::fetch() const {
     return this->keys;
 }
 
-std::vector<KeyEntity> JsonKeyDataSource::fetch(const Query& query) const {
+std::vector<KeyEntity> JsonKeyDB::fetch(const Query& query) const {
     std::vector<KeyEntity> matched_keys = {};
 
     bool site_matched = false;
@@ -29,7 +29,7 @@ std::vector<KeyEntity> JsonKeyDataSource::fetch(const Query& query) const {
     return matched_keys;
 }
 
-KeyIterator JsonKeyDataSource::find_id(const UniqueId& id) const {
+KeyIterator JsonKeyDB::find_id(const UniqueId& id) const {
     return std::find_if(
         this->keys.begin(),
         this->keys.end(),

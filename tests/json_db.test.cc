@@ -7,7 +7,7 @@
 
 #include "data/models/key.h"
 
-auto db = JsonKeyDataSource("./data/test_db.json");
+auto db = JsonKeyDB("./data/test_db.json");
 
 auto key_1 = Key("whatever", "ahnaf", "123");
 auto key_2 = Key("doodle", "ahnaf", "456");

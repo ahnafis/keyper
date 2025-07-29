@@ -16,7 +16,7 @@ Keyper::Keyper(const KeyperOptions& options) {
     this->options = options;
     this->config = load_config(this->options.config_file);
 
-    auto data_source = std::make_shared<JsonKeyDataSource>(config.data_file);
+    auto data_source = std::make_shared<JsonKeyDB>(config.data_file);
     this->vault = Vault(data_source);
 }
 
