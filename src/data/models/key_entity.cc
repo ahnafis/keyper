@@ -33,26 +33,26 @@ bool KeyEntity::operator!=(const KeyEntity& other) const {
     return !(*this == other);
 }
 
-bool operator==(const Key& left, const KeyEntity& right) {
+bool operator==(const Key& key, const KeyEntity& entity) {
     return (
         // clang-format off
 
-      left.site == right.site &&
-      left.username == right.username &&
-      left.password == right.password
+      key.site == entity.site &&
+      key.username == entity.username &&
+      key.password == entity.password
 
         // clang-format on
     );
 }
 
-bool operator!=(const Key& left, const KeyEntity& right) {
-    return !(left == right);
+bool operator!=(const Key& key, const KeyEntity& entity) {
+    return !(key == entity);
 }
 
-bool operator==(const KeyEntity& left, const Key& right) {
-    return right == left;
+bool operator==(const KeyEntity& entity, const Key& key) {
+    return key == entity;
 }
 
-bool operator!=(const KeyEntity& left, const Key& right) {
-    return !(right == left);
+bool operator!=(const KeyEntity& entity, const Key& key) {
+    return !(key == entity);
 }

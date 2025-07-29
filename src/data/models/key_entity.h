@@ -25,7 +25,7 @@ class KeyEntity {
     bool operator!=(const KeyEntity& other) const;
 };
 
-bool operator==(const Key& left, const KeyEntity& right);
-bool operator!=(const Key& left, const KeyEntity& right);
-bool operator==(const KeyEntity& left, const Key& right);
-bool operator!=(const KeyEntity& left, const Key& right);
+bool operator==(const Key& key, const KeyEntity& entity);
+bool operator!=(const Key& key, const KeyEntity& entity);
+bool operator==(const KeyEntity& entity, const Key& key);
+bool operator!=(const KeyEntity& entity, const Key& key);

@@ -5,9 +5,8 @@
 #include <string_view>
 
 std::string input(std::string_view prompt) {
-    if (!prompt.empty()) {
+    if (!prompt.empty())
         std::cout << prompt;
-    }
 
     std::string line;
     std::getline(std::cin, line);

@@ -1,7 +1,6 @@
 #include "data/vault.h"
 
 #include <memory>
-#include <string>
 #include <vector>
 
 #include "data/models/key.h"
@@ -9,8 +8,6 @@
 #include "data/models/query.h"
 #include "data/sources/interface.h"
 #include "types/unique_id.h"
-
-using std::string;
 
 Vault::Vault(const std::shared_ptr<KeyDataSource> data_source) {
     this->data_source = data_source;

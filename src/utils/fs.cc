@@ -16,15 +16,14 @@ void create_file(const std::string& file_name) {
 
 void write_file(const std::string& file_name, const std::string& content) {
     const auto parent_path = fs::path(file_name).parent_path();
-    if (!fs::exists(parent_path)) {
+
+    if (!fs::exists(parent_path))
         fs::create_directories(parent_path);
-    }
 
     std::ofstream stream(file_name);
 
-    if (stream.is_open()) {
+    if (stream.is_open())
         stream << content << '\n';
-    }
 
     stream.close();
 }
@@ -40,13 +39,11 @@ std::string read_file(const std::string& file_name) {
     try {
         std::ifstream stream(file_name);
 
-        if (!stream.is_open()) {
+        if (!stream.is_open())
             stream.close();
-        }
 
-        while (std::getline(stream, line)) {
+        while (std::getline(stream, line))
             content += line + '\n';
-        }
 
         stream.close();
     }
@@ -60,20 +57,21 @@ std::string read_file(const std::string& file_name) {
 
 json read_json_file(const std::string& file_name) {
     json content;
+
     std::ifstream stream(file_name);
 
-    if (stream.is_open()) {
+    if (stream.is_open())
         stream >> content;
-    }
 
     stream.close();
+
     return content;
 }
 
 fs::path expand(const std::string& path) {
     if (path.starts_with("~")) {
-        const std::string HOME = std::getenv("HOME");
-        return fs::path(HOME + path.substr(1));
+        const std::string user_dir = std::getenv("HOME");
+        return fs::path(user_dir + path.substr(1));
     }
 
     return fs::path(path);

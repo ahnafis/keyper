@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 
+#include "data/models/key_entity.h"
 #include "data/sources/json_db.h"
 #include "types/json.h"
 #include "utils/fs.h"
@@ -10,28 +11,28 @@ JsonKeyDataSource::JsonKeyDataSource(const std::string& data_file) {
     this->data_file = data_file;
     const auto db_dir = fs::path(this->data_file).parent_path();
 
-    auto data = fs::read_json_file(this->data_file);
-    this->keys = {};
-
     if (!fs::exists(db_dir))
         fs::create_directories(db_dir);
 
-    if (data.empty())
-        data = json::array();
+    auto json_data = fs::read_json_file(this->data_file);
+    this->keys = {};
 
-    if (!data.is_array()) {
+    if (json_data.empty())
+        json_data = json::array();
+
+    if (!json_data.is_array()) {
         std::cout << "Invalid JSON data" << std::endl;
         return;
     }
 
-    for (const auto& entry : data)
+    for (const auto& entry : json_data)
         this->keys.push_back(this->to_key(entry));
 }
 
 JsonKeyDataSource::~JsonKeyDataSource() {
-    auto data = json::array();
+    json data = json::array();
 
-    for (const auto& key : this->keys)
+    for (const KeyEntity& key : this->keys)
         data.push_back(this->to_json(key));
 
     fs::write_json_file(this->data_file, data);

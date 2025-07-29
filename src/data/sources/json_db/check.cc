@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <string>
 
 #include "data/models/key_entity.h"
