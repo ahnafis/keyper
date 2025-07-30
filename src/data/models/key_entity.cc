@@ -2,6 +2,7 @@
 
 #include <string>
 
+#include "data/models/key.h"
 #include "types/unique_id.h"
 
 KeyEntity::KeyEntity(
