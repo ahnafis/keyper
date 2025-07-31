@@ -1,11 +1,12 @@
 #include <algorithm>
 #include <vector>
 
+#include "types/unique_id.h"
+
 #include "data/models/key_entity.h"
 #include "data/models/query.h"
 #include "data/sources/interface.h"
 #include "data/sources/json_db.h"
-#include "types/unique_id.h"
 
 std::vector<KeyEntity> JsonKeyDB::fetch() const {
     return this->keys;

@@ -5,9 +5,10 @@
 #include <string>
 #include <vector>
 
+#include "types/unique_id.h"
+
 #include "CLI/CLI.hpp"
 #include "keyper.h"
-#include "types/unique_id.h"
 
 void handle_keyboard_interrup(int signum);
 

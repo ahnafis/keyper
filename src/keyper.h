@@ -2,10 +2,11 @@
 
 #include <string>
 
+#include "types/unique_id.h"
+
 #include "config.h"
 #include "data/models/key.h"
 #include "data/vault.h"
-#include "types/unique_id.h"
 
 struct KeyperOptions {
     std::string config_file;

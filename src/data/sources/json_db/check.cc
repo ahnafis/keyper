@@ -1,9 +1,10 @@
 #include <algorithm>
 #include <string>
 
+#include "types/unique_id.h"
+
 #include "data/models/key_entity.h"
 #include "data/sources/json_db.h"
-#include "types/unique_id.h"
 
 bool JsonKeyDB::exists(const UniqueId& id) const {
     return this->find_id(id) != this->keys.end();

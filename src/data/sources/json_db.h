@@ -3,12 +3,13 @@
 #include <string>
 #include <vector>
 
+#include "types/json.h"
+#include "types/unique_id.h"
+
 #include "data/models/key.h"
 #include "data/models/key_entity.h"
 #include "data/models/query.h"
 #include "data/sources/interface.h"
-#include "types/json.h"
-#include "types/unique_id.h"
 
 class JsonKeyDB : public KeyDB {
   public:

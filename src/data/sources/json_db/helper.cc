@@ -1,9 +1,10 @@
 #include <string>
 
-#include "data/models/key_entity.h"
-#include "data/sources/json_db.h"
 #include "types/json.h"
 #include "types/unique_id.h"
+
+#include "data/models/key_entity.h"
+#include "data/sources/json_db.h"
 
 json JsonKeyDB::to_json(const KeyEntity& key) const {
     return json::object({

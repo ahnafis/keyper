@@ -3,11 +3,12 @@
 #include <memory>
 #include <vector>
 
+#include "types/unique_id.h"
+
 #include "data/models/key.h"
 #include "data/models/key_entity.h"
 #include "data/models/query.h"
 #include "data/sources/interface.h"
-#include "types/unique_id.h"
 
 Vault::Vault(const std::shared_ptr<KeyDB> db) {
     this->db = db;

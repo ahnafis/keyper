@@ -2,9 +2,11 @@
 #include <iostream>
 #include <string>
 
+#include "types/json.h"
+
 #include "data/models/key_entity.h"
 #include "data/sources/json_db.h"
-#include "types/json.h"
+
 #include "utils/fs.h"
 
 JsonKeyDB::JsonKeyDB(const std::string& data_file) {

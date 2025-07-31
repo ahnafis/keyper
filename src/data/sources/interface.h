@@ -2,10 +2,11 @@
 
 #include <vector>
 
+#include "types/unique_id.h"
+
 #include "data/models/key.h"
 #include "data/models/key_entity.h"
 #include "data/models/query.h"
-#include "types/unique_id.h"
 
 using KeyIterator = std::vector<KeyEntity>::const_iterator;
 

@@ -2,8 +2,9 @@
 
 #include <string>
 
-#include "data/models/key.h"
 #include "types/unique_id.h"
+
+#include "data/models/key.h"
 
 class KeyEntity {
   public:
