@@ -18,6 +18,9 @@ KeyEntity::KeyEntity(
     this->password = password;
 }
 
+KeyEntity::KeyEntity(const UniqueId& id, const Key& key)
+  : KeyEntity(id, key.site, key.username, key.password) {}
+
 bool KeyEntity::operator==(const KeyEntity& other) const {
     return (
         // clang-format off

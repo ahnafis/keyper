@@ -22,6 +22,8 @@ class KeyEntity {
         const std::string& password
     );
 
+    KeyEntity(const UniqueId& id, const Key& key);
+
     bool operator==(const KeyEntity& other) const;
     bool operator!=(const KeyEntity& other) const;
 };

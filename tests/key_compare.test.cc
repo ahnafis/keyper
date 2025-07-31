@@ -6,8 +6,8 @@
 const auto key_1 = Key("foobar.com", "whoever", "6969");
 const auto key_2 = Key("foobazz.com", "noone", "1234");
 
-const auto entity_1 = KeyEntity(1, key_1.site, key_1.username, key_1.password);
-const auto entity_2 = KeyEntity(2, key_2.site, key_2.username, key_2.password);
+const auto entity_1 = KeyEntity(1, key_1);
+const auto entity_2 = KeyEntity(2, key_2);
 
 TEST_CASE("Should be able to execute Key == Key ") {
     CHECK_EQ(key_1, key_1);
