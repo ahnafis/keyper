@@ -15,10 +15,10 @@ json JsonKeyDB::to_json(const KeyEntity& key) const {
 }
 
 KeyEntity JsonKeyDB::to_key(const json& json_key) const {
-    return KeyEntity(
-        json_key.at("id").get<UniqueId>(),
-        json_key.at("site").get<std::string>(),
-        json_key.at("username").get<std::string>(),
-        json_key.at("password").get<std::string>()
-    );
+    const auto id = json_key.at("id").get<UniqueId>();
+    const auto site = json_key.at("site").get<std::string>();
+    const auto username = json_key.at("username").get<std::string>();
+    const auto password = json_key.at("password").get<std::string>();
+
+    return KeyEntity(id, site, username, password);
 }
