@@ -10,10 +10,10 @@
 #include "CLI/CLI.hpp"
 #include "keyper.h"
 
-void handle_keyboard_interrup(int signum);
+void handle_keyboard_interrupt(int signum);
 
 int main(int argc, char* argv[]) {
-    signal(SIGINT, handle_keyboard_interrup);
+    signal(SIGINT, handle_keyboard_interrupt);
 
     CLI::App app;
     std::string config_file;
@@ -87,7 +87,7 @@ int main(int argc, char* argv[]) {
     return EXIT_SUCCESS;
 }
 
-void handle_keyboard_interrup(int signum) {
+void handle_keyboard_interrupt(int signum) {
     std::cout << std::endl;
     exit(signum);
 }
