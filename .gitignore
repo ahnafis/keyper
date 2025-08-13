@@ -50,9 +50,6 @@ vgcore*
 *.a
 *.lib
 
-# Third party libraries
-third_party
-
 # Executables
 *.exe
 *.out
