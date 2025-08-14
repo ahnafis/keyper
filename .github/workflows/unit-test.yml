@@ -1,4 +1,4 @@
-name: Unit test
+name: CI
 
 on:
   push:
@@ -12,13 +12,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository (with submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
-      - name: cmake
+      - name: Install latest CMake
+        run: |
+          wget https://github.com/Kitware/CMake/releases/download/v4.0.3/cmake-4.0.3-linux-x86_64.sh -O install-cmake.sh
+          chmod +x install-cmake.sh
+          sudo ./install-cmake.sh --skip-license --prefix=/usr/local
+
+      - name: Configure CMake
         run: cmake -B build
 
-      - name: make
-        run: make test
+      - name: Build
+        run: make -C build test
 
-      - name: test
+      - name: Test
         run: ./build/bin/test
